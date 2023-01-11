@@ -7,7 +7,7 @@ const HeaderActionBar: React.FC<IProps> = ({
   children,
 }): React.ReactElement => {
   return (
-    <div className="flex items-center py-2 px-4 shadow-sm bg-white rounded-full">
+    <div className="flex items-center py-2 px-4 shadow-md hover:shadow-lg bg-white rounded-full">
       {children}
     </div>
   );

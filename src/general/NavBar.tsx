@@ -62,7 +62,6 @@ const navRoutes: TNavRoute[] = [
     name: 'Fries & Sides',
     link: `${generalRoutes.productCategory}/fries-n-sides`,
     icon: GiPerson,
-    DropdownComp: <div />,
   },
 ];
 
