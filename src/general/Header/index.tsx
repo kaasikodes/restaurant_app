@@ -1,83 +1,34 @@
-import { contact } from 'data/contact';
-import { generalRoutes, TNavRoute } from 'data/routes';
-import { riceShowaseItems } from 'data/showcase';
-import ActionItem from 'general/ActionItem';
-import HeaderActionBar from 'general/HeaderActionBar';
+import HeaderActionContainer from 'general/HeaderActionContainer';
 import NavBar from 'general/NavBar';
-import NavItems from 'general/NavItems';
-import ShowCaseItems from 'general/ShowCaseItems';
-import {
-  Gi3DGlasses,
-  GiArchiveResearch,
-  GiCartwheel,
-  GiFairy,
-  GiFoodTruck,
-  GiKangaroo,
-  GiPerson,
-  GiPhone,
-  GiProfit,
-  GiProgression,
-  GiRamProfile,
-} from 'react-icons/gi';
+import { useEffect, useRef, useState } from 'react';
+import { GiFoodTruck } from 'react-icons/gi';
+
 import { LogoContainer } from './Header.style';
 
-const navRoutes: TNavRoute[] = [
-  {
-    name: 'Rice',
-    link: `${generalRoutes.productCategory}/rice`,
-    highlight: 'popular',
-    icon: Gi3DGlasses,
-    DropdownComp: (
-      <div className="flex gap-6">
-        <ShowCaseItems items={riceShowaseItems} />
-        <div className="text-xs font-normal mt-4">
-          <h5 className="w-48 font-bold mb-4">About our Rice Meals</h5>
-          <p className="mb-2">
-            With a more “contemporary” style, our rice meals are where the
-            creativity of our chefs shines.
-          </p>
-          <p>
-            Every meal on The Yellow Plate is made fresh with the best of
-            ingredients.
-          </p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    name: 'burgers',
-    link: `${generalRoutes.productCategory}/burgers`,
-    highlight: { value: '&sandwiches', color: 'bg-[#50d71e]' },
-    icon: GiProfit,
-  },
-  {
-    name: 'Platter Combos',
-    link: `${generalRoutes.productCategory}/platter-combos`,
-    highlight: 'save',
-    icon: GiProgression,
-  },
-  {
-    name: 'drinks',
-    link: `${generalRoutes.productCategory}/drinks`,
-    icon: GiKangaroo,
-  },
-  {
-    name: 'BBQ & Grills',
-    link: `${generalRoutes.productCategory}/bbq-n-grills`,
-    icon: GiPerson,
-  },
-  {
-    name: 'Fries & Sides',
-    link: `${generalRoutes.productCategory}/fries-n-sides`,
-    icon: GiPerson,
-    DropdownComp: <div />,
-  },
-];
-
 const Header = () => {
+  let lastKnownScrollPosition = useRef(0);
+  const [showNav, setShowNav] = useState(true);
+  useEffect(() => {
+    document.addEventListener('scroll', (event) => {
+      lastKnownScrollPosition.current = window.scrollY;
+      console.log(lastKnownScrollPosition.current, 'ccc');
+
+      if (lastKnownScrollPosition.current > 10) {
+        setShowNav(false);
+      } else {
+        setShowNav(true);
+      }
+    });
+
+    return () => document.removeEventListener('scroll', () => setShowNav(true));
+  }, []);
   return (
     <div className="relative">
-      <div className="flex flex-col gap-4 fixed z-50 w-full">
+      <div
+        className={`${
+          !showNav ? 'bg-slate-50 pb-4' : ''
+        } flex flex-col gap-4 fixed z-50 w-full`}
+      >
         <LogoContainer className="bg-slate-800 h-12 w-full mt-8 flex justify-center">
           <div className="logo-wrapper">
             <div className="bar">
@@ -102,36 +53,8 @@ const Header = () => {
           </div>
         </LogoContainer>
         {/* header action bars */}
-        <div className="px-12  flex justify-between items-stretch">
-          <HeaderActionBar>
-            <a
-              className="flex gap-2 items-center text-xl font-semibold hover:text-green-600 "
-              href={`tel:${contact.phone}`}
-            >
-              <GiPhone />
-              <span>{contact.phone}</span>{' '}
-            </a>
-          </HeaderActionBar>
-          <HeaderActionBar>
-            <div className="flex gap-2 items-center text-xl font-semibold">
-              <ActionItem>
-                <GiRamProfile />
-              </ActionItem>
-              <ActionItem>
-                <GiCartwheel />
-              </ActionItem>
-              <ActionItem>
-                <GiArchiveResearch />
-              </ActionItem>
-              <ActionItem>
-                <GiFairy />
-              </ActionItem>
-            </div>
-          </HeaderActionBar>
-        </div>
-        <NavBar>
-          <NavItems items={navRoutes} />
-        </NavBar>
+        <HeaderActionContainer />
+        {showNav && <NavBar />}
       </div>
     </div>
   );

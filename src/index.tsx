@@ -7,8 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from 'general/Layout';
 import Error from 'general/Error';
-import ContactPage from 'products/ContactPage';
-import HomePage from 'products/HomePage';
+import ContactPage from 'pages/ContactPage';
+import HomePage from 'pages/HomePage';
 
 const router = createBrowserRouter([
   {
