@@ -15,6 +15,7 @@ const NavItem: React.FC<IProps> = ({ item }) => {
       className="cursor-pointer flex gap-2 items-center relative"
       onHoverStart={() => setShowDrop(true)}
       onHoverEnd={() => setShowDrop(false)}
+      role={`menuitem`}
     >
       {item?.highlight && (
         <motion.div

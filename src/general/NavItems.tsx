@@ -8,7 +8,7 @@ interface IProps {
 
 const NavItems: React.FC<IProps> = ({ items }) => {
   return (
-    <div className="flex justify-evenly gap-4">
+    <div className="flex justify-evenly gap-4" role={'menu'}>
       {items.map((item) => (
         <NavItem key={item.name} item={item} />
       ))}
