@@ -3,7 +3,6 @@ import React from 'react';
 export interface IProduct {
   id: string;
   name: string;
-  photo: string;
 }
 
 interface IProps {

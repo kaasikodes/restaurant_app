@@ -11,7 +11,6 @@ const Header = () => {
   useEffect(() => {
     document.addEventListener('scroll', (event) => {
       lastKnownScrollPosition.current = window.scrollY;
-      console.log(lastKnownScrollPosition.current, 'ccc');
 
       if (lastKnownScrollPosition.current > 10) {
         setShowNav(false);
