@@ -71,6 +71,7 @@ const NavBar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { ease: 'easeIn' } }}
       className="bg-green-500 hidden md:block mx-12 rounded-full px-6 py-4 mt-12"
+      
     >
       <NavItems items={navRoutes} />
     </motion.div>
