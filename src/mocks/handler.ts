@@ -6,7 +6,7 @@ interface IFoodItem {
   id: number;
 }
 
-const foodItems: IFoodItem[] = [
+export const testFoodItems: IFoodItem[] = [
   {
     id: 1,
     title:
@@ -23,6 +23,6 @@ export const handlers = [
 
   // Handles a GET /food-items request
   rest.get(`https://jsonplaceholder.typicode.com/posts`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(foodItems));
+    return res(ctx.status(200), ctx.json(testFoodItems));
   }),
 ];
