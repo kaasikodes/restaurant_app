@@ -5,25 +5,31 @@ import ProductItems from './ProductItems';
 
 const ProductsContainer = () => {
   const [data, setData] = useState<IProduct[]>([]);
+  const [requestState, setRequestState] = useState<
+    '' | 'error' | 'success' | 'loading'
+  >('');
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts`)
-      .then((res) => {
-        return res.json();
-      })
+    setRequestState('loading');
+    getProducts()
       .then((data: any) => {
-        console.log('dsdsd', data);
         const items = data.map(
           (item: any): IProduct => ({ id: item.id, name: item.title })
         );
         setData(items);
-      });
+        setRequestState('success');
+      })
+      .catch(() => setRequestState('error'));
   }, []);
   return (
     <>
-      <h4>Love</h4>
-      <ul className="mx-4 my-4">
-        <ProductItems products={data} />
-      </ul>
+      <h4>Products</h4>
+      {requestState === 'loading' && <span>{requestState}</span>}
+      {requestState === 'error' && <span>{requestState}</span>}
+      {requestState === 'success' && (
+        <ul className="mx-4 my-4">
+          <ProductItems products={data} />
+        </ul>
+      )}
     </>
   );
 };
