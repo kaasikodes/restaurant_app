@@ -11,9 +11,9 @@ interface IProps {
 
 const ProductItem = ({ product }: IProps) => {
   return (
-    <li>
+    <div role={'listitem'}>
       <span>{product.name}</span>
-    </li>
+    </div>
   );
 };
 
