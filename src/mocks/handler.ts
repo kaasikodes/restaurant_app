@@ -22,12 +22,7 @@ export const handlers = [
   // Handles a POST /login request
 
   // Handles a GET /food-items request
-  rest.get('https://jsonplaceholder.typicode.com/posts', (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        data: foodItems,
-      })
-    );
+  rest.get(`https://jsonplaceholder.typicode.com/posts`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(foodItems));
   }),
 ];

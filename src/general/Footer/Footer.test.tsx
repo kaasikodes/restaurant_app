@@ -3,6 +3,6 @@ import Footer from '.';
 
 test('Footer renders correctly', () => {
   render(<Footer />);
-  const footElement = screen.getByText('Information');
+  const footElement = screen.getByText('Footer');
   expect(footElement).toBeInTheDocument();
 });
