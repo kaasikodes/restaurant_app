@@ -2,6 +2,7 @@ import { screen, render } from '@testing-library/react';
 import { testFoodItems } from 'mocks/handler';
 import { server } from 'mocks/server';
 import { rest } from 'msw';
+import ProductItem from './ProductItem';
 import ProductsContainer from './ProductsContainer';
 describe('Product Components test', () => {
   test('Render Products Container', () => {
@@ -31,5 +32,18 @@ describe('Product Components test', () => {
     render(<ProductsContainer />);
     const comp = await screen.findByText('error');
     expect(comp).toBeInTheDocument();
+  });
+
+  test('Product Item executes handleClick func', async () => {
+    const dummyFunc = jest.fn();
+    render(
+      <ProductItem
+        product={{ id: '1', name: 'Catfish' }}
+        handleClick={dummyFunc}
+      />
+    );
+    const item = await screen.findByRole('listitem');
+    item.click();
+    expect(dummyFunc).toBeCalled();
   });
 });

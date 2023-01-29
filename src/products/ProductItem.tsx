@@ -7,11 +7,15 @@ export interface IProduct {
 
 interface IProps {
   product: IProduct;
+  handleClick: () => void;
 }
 
-const ProductItem = ({ product }: IProps) => {
+const ProductItem = ({ product, handleClick }: IProps) => {
+  const showDetails = (e: React.MouseEvent) => {
+    handleClick();
+  };
   return (
-    <div role={'listitem'}>
+    <div role={'listitem'} className="cursor-pointer" onClick={showDetails}>
       <span>{product.name}</span>
     </div>
   );
