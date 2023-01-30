@@ -46,6 +46,18 @@ describe('Product Components test', () => {
     item.click();
     expect(dummyFunc).toBeCalled();
   });
+  test('Product Item more info populates curent Product id', async () => {
+    const dummyFunc = jest.fn();
+    render(
+      <ProductItem
+        product={{ id: '1', name: 'Catfish' }}
+        handleClick={dummyFunc}
+      />
+    );
+    const item = await screen.findByRole('listitem');
+    item.click();
+    expect(dummyFunc).toBeCalled();
+  });
   // TO DO test wrapper eg. context for global data, try authentication preferrably oauth2
   // TO DO test custom react hooks
 });

@@ -1,4 +1,5 @@
-import React from 'react';
+import { EGlobalOps, GlobalContext } from 'contexts/GlobalContextProvider';
+import React, { useContext } from 'react';
 
 export interface IProduct {
   id: string;
@@ -11,7 +12,9 @@ interface IProps {
 }
 
 const ProductItem = ({ product, handleClick }: IProps) => {
+  const { dispatch } = useContext(GlobalContext);
   const showDetails = (e: React.MouseEvent) => {
+    dispatch({ type: EGlobalOps.setCurrentProductId, payload: product.id });
     handleClick();
   };
   return (

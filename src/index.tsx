@@ -9,6 +9,7 @@ import Layout from 'general/Layout';
 import Error from 'general/Error';
 import ContactPage from 'pages/ContactPage';
 import HomePage from 'pages/HomePage';
+import GlobalContextProvider from 'contexts/GlobalContextProvider';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GlobalContextProvider>
+      <RouterProvider router={router} />
+    </GlobalContextProvider>
   </React.StrictMode>
 );
 
