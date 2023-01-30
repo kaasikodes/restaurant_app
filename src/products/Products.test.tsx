@@ -1,4 +1,5 @@
 import { screen, render } from '@testing-library/react';
+import GlobalContextProvider from 'contexts/GlobalContextProvider';
 import { testFoodItems } from 'mocks/handler';
 import { server } from 'mocks/server';
 import { rest } from 'msw';
@@ -40,7 +41,10 @@ describe('Product Components test', () => {
       <ProductItem
         product={{ id: '1', name: 'Catfish' }}
         handleClick={dummyFunc}
-      />
+      />,
+      {
+        wrapper: GlobalContextProvider,
+      }
     );
     const item = await screen.findByRole('listitem');
     item.click();
@@ -48,15 +52,16 @@ describe('Product Components test', () => {
   });
   test('Product Item shows curent Product id when clicked', async () => {
     const dummyFunc = jest.fn();
-    render(
-      <ProductItem
-        product={{ id: '1', name: 'Catfish' }}
-        handleClick={dummyFunc}
-      />
-    );
-    const item = await screen.findByRole('listitem');
+    const product = testFoodItems[0];
+    render(<ProductsContainer />, {
+      wrapper: GlobalContextProvider,
+    });
+    const item = await screen.findByText(product.title);
     item.click();
-    expect(dummyFunc).toBeCalled();
+    const currentProductId = await screen.findByText(
+      `CurrentProductId: ${product.id}`
+    );
+    expect(currentProductId).toBeInTheDocument();
   });
   // TO DO test wrapper eg. context for global data, try authentication preferrably oauth2
   // TO DO test custom react hooks
