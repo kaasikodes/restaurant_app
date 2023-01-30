@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render } from 'test-utils';
 import GlobalContextProvider from 'contexts/GlobalContextProvider';
 import { testFoodItems } from 'mocks/handler';
 import { server } from 'mocks/server';
@@ -41,21 +41,15 @@ describe('Product Components test', () => {
       <ProductItem
         product={{ id: '1', name: 'Catfish' }}
         handleClick={dummyFunc}
-      />,
-      {
-        wrapper: GlobalContextProvider,
-      }
+      />
     );
     const item = await screen.findByRole('listitem');
     item.click();
     expect(dummyFunc).toBeCalled();
   });
   test('Product Item shows curent Product id when clicked', async () => {
-    const dummyFunc = jest.fn();
     const product = testFoodItems[0];
-    render(<ProductsContainer />, {
-      wrapper: GlobalContextProvider,
-    });
+    render(<ProductsContainer />);
     const item = await screen.findByText(product.title);
     item.click();
     const currentProductId = await screen.findByText(
