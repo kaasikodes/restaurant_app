@@ -18,7 +18,11 @@ const ProductItem = ({ product, handleClick }: IProps) => {
     handleClick();
   };
   return (
-    <div role={'listitem'} className="cursor-pointer" onClick={showDetails}>
+    <div
+      role={'listitem'}
+      className="cursor-pointer bg-slate-100 p-4 shadow-lg"
+      onClick={showDetails}
+    >
       <span>{product.name}</span>
     </div>
   );

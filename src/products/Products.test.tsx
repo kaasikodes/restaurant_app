@@ -46,7 +46,7 @@ describe('Product Components test', () => {
     item.click();
     expect(dummyFunc).toBeCalled();
   });
-  test('Product Item more info populates curent Product id', async () => {
+  test('Product Item shows curent Product id when clicked', async () => {
     const dummyFunc = jest.fn();
     render(
       <ProductItem
