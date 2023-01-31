@@ -1,5 +1,4 @@
 import { screen, render } from 'test-utils';
-import GlobalContextProvider from 'contexts/GlobalContextProvider';
 import { testFoodItems } from 'mocks/handler';
 import { server } from 'mocks/server';
 import { rest } from 'msw';
