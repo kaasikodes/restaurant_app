@@ -56,6 +56,10 @@ describe('Product Components test', () => {
     );
     expect(currentProductId).toBeInTheDocument();
   });
-  // TO DO test wrapper eg. context for global data, try authentication preferrably oauth2
+
   // TO DO test custom react hooks
+  // TO DO setup storybook to use to create components to be used in project (a few)
+  // TO DO create all comp boiler plate & write a couple of tests
+  // Integrate this tests into ur CI pipline
+  // Finally connect a contentful api n use redux query/redux toolkit n not react query
 });
