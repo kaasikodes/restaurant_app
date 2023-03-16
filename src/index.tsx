@@ -10,6 +10,10 @@ import Error from 'general/Error';
 import ContactPage from 'pages/ContactPage';
 import HomePage from 'pages/HomePage';
 import GlobalContextProvider from 'contexts/GlobalContextProvider';
+import PersonalityTestPage from 'pages/PersonalityTestPage';
+import PersonalityLandingPage from 'pages/PersonalityLandingPage';
+import AppLayout from 'components/AppLayout';
+import PersonalityResultPage from 'pages/PersonalityResultPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +28,25 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <ContactPage />,
+      },
+    ],
+  },
+  {
+    path: '/personality',
+    element: <AppLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: 'home',
+        element: <PersonalityLandingPage />,
+      },
+      {
+        path: 'start',
+        element: <PersonalityTestPage />,
+      },
+      {
+        path: 'result',
+        element: <PersonalityResultPage />,
       },
     ],
   },
