@@ -5,48 +5,34 @@ import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from 'general/Layout';
-import Error from 'general/Error';
-import ContactPage from 'pages/ContactPage';
-import HomePage from 'pages/HomePage';
+
+import Error from 'pages/error';
+
 import GlobalContextProvider from 'contexts/GlobalContextProvider';
-import PersonalityTestPage from 'pages/PersonalityTestPage';
-import PersonalityLandingPage from 'pages/PersonalityLandingPage';
-import AppLayout from 'components/AppLayout';
-import PersonalityResultPage from 'pages/PersonalityResultPage';
+
+import { pRoutes } from 'data/routes';
+import Layout from 'components/layout';
+import Home from 'pages/home';
+import Assessment from 'pages/assessment';
+import Result from 'pages/result';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: pRoutes.index,
     element: <Layout />,
     errorElement: <Error />,
     children: [
       {
-        path: '/',
-        element: <HomePage />,
+        path: pRoutes.index,
+        element: <Home />,
       },
       {
-        path: '/contact',
-        element: <ContactPage />,
-      },
-    ],
-  },
-  {
-    path: '/personality',
-    element: <AppLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: 'home',
-        element: <PersonalityLandingPage />,
+        path: pRoutes.start,
+        element: <Assessment />,
       },
       {
-        path: 'start',
-        element: <PersonalityTestPage />,
-      },
-      {
-        path: 'result',
-        element: <PersonalityResultPage />,
+        path: pRoutes.result,
+        element: <Result />,
       },
     ],
   },

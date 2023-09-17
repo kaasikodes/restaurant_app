@@ -31,10 +31,10 @@
       ],
       "choosenOption": {
         "questionId": 1,
-        "optionId": 2,
+        "optionId": 3,
         "answer": {
-          "extrovertValue": 1,
-          "introvertValue": 4
+          "extrovertValue": 4,
+          "introvertValue": 1
         }
       }
     },

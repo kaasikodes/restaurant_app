@@ -19,6 +19,7 @@
     "eslint-config-prettier": "^8.6.0",
     "framer-motion": "^8.4.0",
     "json-server": "^0.17.1",
+    "json-server-reset": "^1.6.0",
     "prettier": "^2.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -44,7 +45,7 @@
     "workbox-streams": "^6.5.4"
   },
   "scripts": {
-    "backend": "json-server --watch backend/db.json --port=8000",
+    "backend": "json-server --watch backend/db.json --port=8000  --middlewares ./node_modules/json-server-reset",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
